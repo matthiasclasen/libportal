@@ -33,16 +33,22 @@ static inline void _xdp_parent_exported_wayland (GdkWindow *window,
                                                  const char *handle,
                                                  gpointer data)
 
+#ifndef __GI_SCANNER__
 {
   XdpParent *parent = data;
   g_autofree char *handle_str = g_strdup_printf ("wayland:%s", handle);
   parent->callback (parent, handle_str, parent->data);
 }
+#else
+;
+#endif
 
 static inline gboolean _xdp_parent_export_gtk (XdpParent *parent,
                                                XdpParentExported callback,
                                                gpointer data)
+#ifndef __GI_SCANNER__
 {
+  
 #ifdef GDK_WINDOWING_X11
   if (GDK_IS_X11_DISPLAY (gtk_widget_get_display (GTK_WIDGET (parent->object))))
     {
@@ -65,6 +71,9 @@ static inline gboolean _xdp_parent_export_gtk (XdpParent *parent,
   g_warning ("Couldn't export handle, unsupported windowing system");
   return FALSE;
 }
+#else
+;
+#endif
 
 static inline void _xdp_parent_unexport_gtk (XdpParent *parent)
 {
@@ -82,9 +91,12 @@ void       xdp_parent_free    (XdpParent *parent);
 XdpParent *xdp_parent_new_gtk (GtkWindow *window);
 #endif
 
-static inline XdpParent *xdp_parent_new_gtk (GtkWindow *window);
+XDP_PUBLIC
+XdpParent               *xdp_parent_new_from_gtk (GtkWindow *window);
 
-static inline XdpParent *xdp_parent_new_gtk (GtkWindow *window)
+static inline XdpParent *xdp_parent_new_gtk      (GtkWindow *window);
+
+static inline XdpParent *xdp_parent_new_gtk      (GtkWindow *window)
 {
   XdpParent *parent = g_new0 (XdpParent, 1);
   parent->export = _xdp_parent_export_gtk;

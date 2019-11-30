@@ -16,28 +16,11 @@
  */
 
 #include "config.h"
+#include "portal-gtk.h"
 
-#include "utils-private.h"
-
-G_DEFINE_BOXED_TYPE (XdpParent, xdp_parent, _xdp_parent_copy, _xdp_parent_free)
 
 XdpParent *
-_xdp_parent_copy (XdpParent *source)
+xdp_parent_new_from_gtk (GtkWindow *window)
 {
-  XdpParent *parent;
-
-  parent = g_new0 (XdpParent, 1);
-
-  parent->export = source->export;
-  parent->unexport = source->unexport;
-  g_set_object (&parent->object, source->object);
-
-  return parent;
-}
-
-void
-_xdp_parent_free (XdpParent *parent)
-{
-  g_clear_object (&parent->object);
-  g_free (parent);
+  return xdp_parent_new_gtk (window);
 }

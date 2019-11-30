@@ -29,8 +29,10 @@ G_DECLARE_FINAL_TYPE (XdpPortal, xdp_portal, XDP, PORTAL, GObject)
 #define XDP_PUBLIC extern
 #endif
 
+#ifndef __GI_SCANNER__
 XDP_PUBLIC
 GType      xdp_portal_get_type               (void) G_GNUC_CONST;
+#endif
 
 XDP_PUBLIC
 XdpPortal *xdp_portal_new                    (void);
@@ -61,9 +63,12 @@ struct _XdpParent {
   gpointer data;
 };
 
-static inline void xdp_parent_free (XdpParent *parent);
+XDP_PUBLIC
+GType              xdp_parent_get_type (void) G_GNUC_CONST;
 
-static inline void xdp_parent_free (XdpParent *parent)
+static inline void xdp_parent_free     (XdpParent *parent);
+
+static inline void xdp_parent_free     (XdpParent *parent)
 {
   g_clear_object (&parent->data);
   g_free (parent);

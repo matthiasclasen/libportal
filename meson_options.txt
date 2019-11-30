@@ -1,0 +1,9 @@
+option('gir',
+       type: 'boolean',
+       value: true,
+       description: 'Generate GIR')
+
+option('vapi',
+       type: 'boolean',
+       value: true,
+       description: 'Generate VAPI')
