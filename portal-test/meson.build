@@ -1,5 +1,4 @@
 
-gtk_dep = dependency('gtk+-3.0')
 gst_dep = dependency('gstreamer-audio-1.0')
 
 resources = gnome.compile_resources('resources',

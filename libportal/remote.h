@@ -25,8 +25,10 @@ G_BEGIN_DECLS
 
 G_DECLARE_FINAL_TYPE (XdpSession, xdp_session, XDP, SESSION, GObject)
 
+#ifndef __GI_SCANNER__
 XDP_PUBLIC
 GType xdp_session_get_type (void) G_GNUC_CONST;
+#endif
 
 /**
  * XdpOutputType:

@@ -1,5 +1,6 @@
 /*** BEGIN file-header ***/
 
+#include "config.h"
 #include "portal.h"
 
 /*** END file-header ***/

@@ -205,7 +205,7 @@ get_user_information (AccountCall *call)
  * xdp_portal_get_user_information:
  * @portal: a #XdpPortal
  * @parent: (nullable): parent window information
- * @reason: (nullable) a string that can be shown in the dialog to explain
+ * @reason: (nullable): a string that can be shown in the dialog to explain
  *    why the information is needed
  * @cancellable: (nullable): optional #GCancellable
  * @callback: (scope async): a callback to call when the request is done
